@@ -1,3 +1,14 @@
 <h1>
   {{title}}
 </h1>
+
+<a [routerLink]=" ['./login'] " routerLinkActive="active">
+  Barrel
+</a>
+<a [routerLink]=" [''] " routerLinkActive="active">
+  About
+</a>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
