@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ng2-bootstrap';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
