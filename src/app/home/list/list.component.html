@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">List title</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li *ngFor="let item of u_list.list_items" class="list-group-item"> {{ item }} </li>
+        </ul>
+        <!--<user-list-item> </user-list-item>-->
+      </div>
+      <div class="panel-footer ">
+        <a (click)="addNewListItem()">
+          <div class="glyphicon glyphicon-plus"></div>
+          Add new item to list
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
