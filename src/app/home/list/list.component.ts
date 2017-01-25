@@ -14,11 +14,16 @@ export class ListComponent implements OnInit {
 
   user_lists = [];
   u_list = {
-    list_title: '',
+    list_title: 'test',
+    list_title_changed: false,
     list_items: []
   };
 
   addNewListItem() {
     this.u_list.list_items.push('my new item');
+  }
+
+  updateListTitle() {
+    this.u_list.list_title = '';
   }
 }

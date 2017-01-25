@@ -2,13 +2,14 @@
   <div class="row">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">List title</h3>
+        <h3 *ngIf="!u_list.list_title_changed" (click)="u_list.list_title_changed = !u_list.list_title_changed" class="panel-title">{{ u_list.list_title }}</h3>
+        <input type="text" *ngIf="u_list.list_title_changed" [(ngModel)]="u_list.list_title" (blur)="u_list.list_title_changed = !u_list.list_title_changed" class="form-control">
       </div>
       <div class="panel-body">
         <ul class="list-group">
           <li *ngFor="let item of u_list.list_items" class="list-group-item"> {{ item }} </li>
         </ul>
-        <!--<user-list-item> </user-list-item>-->
+        <!-- <user-list-item> </user-list-item> -->
       </div>
       <div class="panel-footer ">
         <a (click)="addNewListItem()">
