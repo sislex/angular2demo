@@ -1,29 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'user-lists',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class ListComponent {
 
   user_lists = [];
   u_list = {
-    list_title: 'test',
-    list_title_changed: false,
-    list_items: []
+    title: 'My list',
+    title_changed: false,
+    items: []
   };
 
-  addNewListItem() {
-    this.u_list.list_items.push('my new item');
+  addListItem() {
+    this.u_list.items.push('My new item');
   }
 
-  updateListTitle() {
-    this.u_list.list_title = '';
+  changeListTitle() {
+    this.u_list.title_changed = !this.u_list.title_changed;
+    setTimeout(function () {
+      this.setFocus();
+    }.bind(this), 0);
+  }
+
+  public focusTrigger = new EventEmitter<boolean>();
+  setFocus() {
+    this.focusTrigger.emit(true);
   }
 }
