@@ -2,12 +2,12 @@
   <div class="row">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 *ngIf="!isNewTitle" (click)="changeTitle()" class="panel-title is-breakable">{{ u_list.title }}</h3>
-        <input type="text" *ngIf="isNewTitle" [(ngModel)]="u_list.title" [focus]="focusTrigger" (blur)="isNewTitle = false" (keyup.enter)="isNewTitle = false" class="form-control">
+        <h3 *ngIf="!isNewTitle" (click)="showUpdateTitleInput()" class="panel-title hyphenate">{{ u_list.title }}</h3>
+        <input type="text" *ngIf="isNewTitle" [(ngModel)]="u_list.title" [focus]="focusTrigger" (blur)="updateTitle()" (keyup.enter)="updateTitle()" class="form-control">
       </div>
       <div class="panel-body">
         <ul class="list-group">
-          <li *ngFor="let item of u_list.items" class="list-group-item is-breakable"> {{ item }} </li>
+          <li *ngFor="let item of u_list.items" class="list-group-item hyphenate"> {{ item }} </li>
         </ul>
       </div>
       <div class="panel-footer">
@@ -15,7 +15,7 @@
           <div class="glyphicon glyphicon-plus"></div>
           Add new item
         </a>
-        <textarea *ngIf="isNewListItem" [(ngModel)]="listItem" [focus]="focusTrigger" (blur)="addNewListItem()" (keyup.enter)="addNewListItem()" class="form-control"></textarea>
+        <textarea *ngIf="isNewListItem" [(ngModel)]="newListItem" [focus]="focusTrigger" (blur)="addNewListItem()" (keyup.enter)="addNewListItem()" class="form-control"></textarea>
       </div>
     </div>
   </div>
