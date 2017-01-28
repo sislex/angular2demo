@@ -6,3 +6,7 @@
     -moz-hyphens: auto;
     hyphens: auto;
 }
+
+.no-resize {
+    resize: none;
+}

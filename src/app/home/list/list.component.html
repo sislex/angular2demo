@@ -15,7 +15,7 @@
           <div class="glyphicon glyphicon-plus"></div>
           Add new item
         </a>
-        <textarea *ngIf="isNewListItem" [(ngModel)]="newListItem" [focus]="focusTrigger" (blur)="addNewListItem()" (keyup.enter)="addNewListItem()" class="form-control"></textarea>
+        <textarea *ngIf="isNewListItem" [(ngModel)]="newListItem" [focus]="focusTrigger" (blur)="addNewListItem()" (keyup.enter)="addNewListItem()" class="form-control no-resize"></textarea>
       </div>
     </div>
   </div>
