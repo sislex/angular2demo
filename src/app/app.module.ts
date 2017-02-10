@@ -13,6 +13,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { ListComponent } from './home/list/list.component';
 import { FocusElementDirective } from './focus-element.directive';
 
+import { AlertService, AuthenticationService } from './services/index';
+import { AlertComponent } from './alert/alert/alert.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,9 @@ import { FocusElementDirective } from './focus-element.directive';
     HomeComponent,
     ProfileComponent,
     ListComponent,
-    FocusElementDirective
+    FocusElementDirective,
+    ListItemComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,7 @@ import { FocusElementDirective } from './focus-element.directive';
     AlertModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthenticationService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
