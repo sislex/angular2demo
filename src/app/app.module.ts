@@ -14,7 +14,7 @@ import { ListComponent } from './home/list/list.component';
 import { FocusElementDirective } from './focus-element.directive';
 
 import { AlertService, AuthenticationService } from './services/index';
-import { AlertComponent } from './alert/alert/alert.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
