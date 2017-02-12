@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 
 
+
 const ROUTES: Routes = [
   { path: '',           component: HomeComponent },
   { path: 'profile',    component: ProfileComponent },
@@ -14,7 +15,7 @@ const ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],
   providers: []
 })
