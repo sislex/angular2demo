@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 // import { ListComponent } from './list/list.component';
-// import { ListItemComponent } from './list/list-item/list-item.component';
 
 @Component({
   selector: 'app-home',

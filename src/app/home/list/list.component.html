@@ -1,22 +1,39 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 *ngIf="!isNewTitle" (click)="showUpdateTitleInput()" class="panel-title hyphenate">{{ u_list.title }}</h3>
-        <input type="text" *ngIf="isNewTitle" [(ngModel)]="u_list.title" [focus]="focusTrigger" (blur)="updateTitle()" (keyup.enter)="updateTitle()" class="form-control">
-      </div>
-      <div class="panel-body">
-        <ul class="list-group">
-          <li *ngFor="let item of u_list.items" class="list-group-item hyphenate"> {{ item }} </li>
-        </ul>
-      </div>
-      <div class="panel-footer">
-        <a *ngIf="!isNewListItem" (click)="showNewListItemInput()">
-          <div class="glyphicon glyphicon-plus"></div>
-          Add new item
-        </a>
-        <textarea *ngIf="isNewListItem" [(ngModel)]="newListItem" [focus]="focusTrigger" (blur)="addNewListItem()" (keyup.enter)="addNewListItem()" class="form-control no-resize"></textarea>
-      </div>
+    <div class="panel">
+      <a (click)="addNewList()" class="btn btn-success">
+        <!--<div class="glyphicon glyphicon-plus"></div>-->
+        New list
+      </a>
     </div>
   </div>
+
+  <div class="row">
+    <!--<ul class="list-group list-inline">-->
+    <ul class="list-group">
+      <li *ngFor="let list of user_lists" class="list-group-item" id="{{ list.id }}">
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 *ngIf="!isNewTitle" (click)="showUpdateTitleInput(list.id)" class="panel-title hyphenate">{{ list.title }}</h3>
+            <input type="text" *ngIf="isNewTitle" [(ngModel)]="u_list.title" [focus]="focusTrigger" (blur)="updateTitle(list.id)" (keyup.enter)="updateTitle(list.id)" class="form-control">
+          </div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li *ngFor="let item of list.items" class="list-group-item hyphenate"> {{ item }} </li>
+            </ul>
+          </div>
+          <div class="panel-footer">
+            <a *ngIf="!isNewListItem" (click)="showNewListItemInput()">
+              <div class="glyphicon glyphicon-plus"></div>
+              Add new item
+            </a>
+            <textarea *ngIf="isNewListItem" [(ngModel)]="newListItem" [focus]="focusTrigger" (blur)="addNewListItem()" (keyup.enter)="addNewListItem()" class="form-control no-resize"></textarea>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+
 </div>

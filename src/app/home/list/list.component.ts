@@ -7,18 +7,60 @@ import { Component, EventEmitter } from '@angular/core';
 })
 
 export class ListComponent {
+  private user_lists = [];
+  private u_list = {
+    id: 0,
+    title: 'My list',
+    items: []
+  };
 
+  private lastListId = 0;
   private isNewTitle = false;
   private isNewListItem = false;
   private newListItem = '';
   private currentListTitle = '';
 
-  // user_lists = [];
+  addNewList() {
+    let list = {};
+    for (let k in this.u_list) {
+      list[k] = this.u_list[k];
+    }
 
-  private u_list = {
-    title: 'My list',
-    items: []
-  };
+    list['id'] = this.lastListId + 1;
+    this.user_lists.push(list);
+    this.lastListId = this.lastListId + 1;
+    console.log(this.user_lists);
+  }
+
+  showUpdateTitleInput(id) {
+    for (let list in this.user_lists) {
+      if (list['id'] == id) {
+        this.currentListTitle = list['title'];
+      }
+      this.isNewTitle = !this.isNewTitle;
+      setTimeout(function () {
+        this.setFocus();
+      }.bind(this), 0);
+    }
+
+    // this.currentListTitle = this.user_lists[0].title;
+    // this.isNewTitle = !this.isNewTitle;
+    // setTimeout(function () {
+    //   this.setFocus();
+    // }.bind(this), 0);
+  }
+
+  updateTitle(id) {
+    for (let list in this.user_lists) {
+      if (!this.u_list.title.trim() && list['id'] == id) {
+        list['title'] = this.u_list.title;
+      }
+    }
+    // if (!this.u_list.title.trim()) {
+    //   this.u_list.title = this.currentListTitle
+    // }
+    this.isNewTitle = false;
+  }
 
   showNewListItemInput() {
     this.newListItem = '';
@@ -35,19 +77,8 @@ export class ListComponent {
     this.isNewListItem = false;
   }
 
-  showUpdateTitleInput() {
-    this.currentListTitle = this.u_list.title;
-    this.isNewTitle = !this.isNewTitle;
-    setTimeout(function () {
-      this.setFocus();
-    }.bind(this), 0);
-  }
-  
-  updateTitle() {
-    if (!this.u_list.title.trim()) {
-      this.u_list.title = this.currentListTitle
-    }
-    this.isNewTitle = false;
+  showUpdateListItemInput() {
+    
   }
 
   public focusTrigger = new EventEmitter<boolean>();

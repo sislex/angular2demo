@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ListComponent } from './home/list/list.component';
 import { FocusElementDirective } from './focus-element.directive';
+import { VideoComponent } from './video/video.component';
 
 import { AlertService, AuthenticationService } from './services/index';
 import { AlertComponent } from './alert/alert/alert.component';
@@ -24,8 +25,9 @@ import { AlertComponent } from './alert/alert/alert.component';
     ProfileComponent,
     ListComponent,
     FocusElementDirective,
-    ListItemComponent,
-    AlertComponent
+    AlertComponent,
+    FocusElementDirective,
+    VideoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="row">
+    <ul class="list-group list-inline">
+      <div> Available cameras: </div>
+      <li *ngFor="let camera of cameras" (click)="showCamera(camera.id)" class="list-group-item">
+        <div class="btn btn-primary">
+          {{ camera.label }}
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <video #video width="640" height="480" autoplay></video>
+  </div>
+</div>
