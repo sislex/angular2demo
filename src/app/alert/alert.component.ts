@@ -3,15 +3,24 @@ import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../services/index';
 
 @Component({
+  moduleId: module.id,
   selector: 'app-alert',
-  templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.css']
+  templateUrl: 'alert.component.html'
 })
-export class AlertComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+export class AlertComponent {
+  private get message(){
+    if(this.alertService.message){
+      this.removeMessage();
+    }
+    return this.alertService.message;
   }
 
+  constructor(private alertService: AlertService) {}
+
+  private removeMessage(){
+    setTimeout(()=>{
+      this.alertService.message = null;
+    }, 7000);
+  }
 }

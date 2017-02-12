@@ -1,15 +1,29 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map'
+import { Http }   from '@angular/http';
+import { Response} from '@angular/http';
+
+import { User } from '../models/index';
 
 @Injectable()
 export class AuthenticationService {
+  public data: Response = null;
+  public user: User = null;
 
-  constructor() { }
+  constructor(private http: Http) { }
 
-  public login(username, password): Promise<boolean> {
+  public login(username, password): Promise<User> {
     return new Promise((resolve)=>{
       setTimeout(() => {
-        resolve(true);
+        if(username == 1 && password == 1){
+
+          this.http.get('user.json').subscribe((data: Response) => {
+            this.user = data.json();
+            resolve(this.user);
+          });
+        }else{
+          resolve(false);
+        }
+
       }, 2000);
     });
   }
