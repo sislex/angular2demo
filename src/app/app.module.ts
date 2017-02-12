@@ -28,6 +28,7 @@ import { AlertComponent } from './alert/alert/alert.component';
     AlertComponent,
     FocusElementDirective,
     VideoComponent
+    AlertComponent
   ],
   imports: [
     BrowserModule,
