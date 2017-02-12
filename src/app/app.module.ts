@@ -24,7 +24,6 @@ import { AlertComponent } from './alert/alert/alert.component';
     ProfileComponent,
     ListComponent,
     FocusElementDirective,
-    ListItemComponent,
     AlertComponent
   ],
   imports: [
