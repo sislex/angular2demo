@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../services/index';
+import { User } from '../models/index';
 
 
 @Component({
@@ -29,15 +30,15 @@ export class LoginComponent implements OnInit {
   login() {
     this.loading = true;
     this.authenticationService.login(this.model.username, this.model.password)
-    .then(data => {
-        if(data){
-          console.log('login: true');
-          this.alertService.error('123');
+    .then((user: User) => {
+        if(user){
+          this.alertService.success('Добро пожаловать ' + user.name);
+          this.router.navigate([this.returnUrl]);
         }else{
-          this.alertService.error('123');
+          this.alertService.error('Ошиблись логином или паролем');
         }
           this.loading = false;
-        this.router.navigate([this.returnUrl]);
+
       },
       error => {
         console.log('login: true');
