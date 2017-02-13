@@ -1,4 +1,5 @@
 import { Component, EventEmitter } from '@angular/core';
+import { User } from './../../models/index';
 
 @Component({
   selector: 'user-lists',
@@ -7,80 +8,67 @@ import { Component, EventEmitter } from '@angular/core';
 })
 
 export class ListComponent {
-  private user_lists = [];
-  private u_list = {
-    id: 0,
-    title: 'My list',
-    items: []
-  };
+  constructor(private user: User) {
+  }
 
-  private lastListId = 0;
-  private isNewTitle = false;
-  private isNewListItem = false;
-  private newListItem = '';
-  private currentListTitle = '';
-
+  private newListItem: string = '';
+  private currentListTitle: string = '';
+  
   addNewList() {
-    let list = {};
-    for (let k in this.u_list) {
-      list[k] = this.u_list[k];
-    }
-
-    list['id'] = this.lastListId + 1;
-    this.user_lists.push(list);
-    this.lastListId = this.lastListId + 1;
-    console.log(this.user_lists);
+    let id = this.user.getNewListId();
+    this.user.addList(id);
   }
 
-  showUpdateTitleInput(id) {
-    for (let list in this.user_lists) {
-      if (list['id'] == id) {
-        this.currentListTitle = list['title'];
-      }
-      this.isNewTitle = !this.isNewTitle;
-      setTimeout(function () {
-        this.setFocus();
-      }.bind(this), 0);
-    }
-
-    // this.currentListTitle = this.user_lists[0].title;
-    // this.isNewTitle = !this.isNewTitle;
-    // setTimeout(function () {
-    //   this.setFocus();
-    // }.bind(this), 0);
-  }
-
-  updateTitle(id) {
-    for (let list in this.user_lists) {
-      if (!this.u_list.title.trim() && list['id'] == id) {
-        list['title'] = this.u_list.title;
+  showUpdateTitleInput(listId: number) {
+    for (let list of this.user.lists) {
+      if (list.id == listId) {
+        this.currentListTitle = list.title;
+        list.isNewTitle = !list.isNewTitle;
+        setTimeout(function () {
+          this.setFocus();
+        }.bind(this), 200);
       }
     }
-    // if (!this.u_list.title.trim()) {
-    //   this.u_list.title = this.currentListTitle
-    // }
-    this.isNewTitle = false;
   }
 
-  showNewListItemInput() {
+  updateTitle(listId: number) {
+    for (let list of this.user.lists) {
+      if (list.id == listId && !list.title.trim()) {
+        list.title = this.currentListTitle;
+        list.isNewTitle = false;
+      } else {
+        list.isNewTitle = false;
+      }
+    }
+  }
+
+  showNewListItemInput(listId: number) {
     this.newListItem = '';
-    this.isNewListItem = true;
-    setTimeout(function () {
-      this.setFocus();
-    }.bind(this), 0);
+    for (let list of this.user.lists) {
+      if (list.id == listId) {
+        list.isNewListItem = true;
+        setTimeout(function () {
+          this.setFocus();
+        }.bind(this), 0);
+      }
+    }
   }
 
-  addNewListItem() {
-    if (this.newListItem.trim()) {
-      this.u_list.items.push(this.newListItem);
+  addNewListItem(listId: number) {
+    for (let list of this.user.lists) {
+      if (list.id == listId && this.newListItem.trim() != '') {
+        list.items.push({text: this.newListItem, completed: false})
+        list.isNewListItem = false;
+      } else {
+        list.isNewListItem = false;
+      }
     }
-    this.isNewListItem = false;
   }
 
   showUpdateListItemInput() {
-    
+    // TODO: add list item update function
   }
-
+  
   public focusTrigger = new EventEmitter<boolean>();
   setFocus() {
     this.focusTrigger.emit(true);

@@ -12,7 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ListComponent } from './home/list/list.component';
 import { FocusElementDirective } from './focus-element.directive';
-import { VideoComponent } from './video/video.component';
+import { User } from './models/index';
+
+
+// import { VideoComponent } from './video/video.component';
 
 import { AlertService, AuthenticationService } from './services/index';
 import { AlertComponent } from './alert/alert.component';
@@ -27,7 +30,7 @@ import { AlertComponent } from './alert/alert.component';
     FocusElementDirective,
     AlertComponent,
     FocusElementDirective,
-    VideoComponent
+    // VideoComponent,
     AlertComponent
   ],
   imports: [
@@ -37,7 +40,7 @@ import { AlertComponent } from './alert/alert.component';
     AlertModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [AuthenticationService, AlertService],
+  providers: [AuthenticationService, AlertService, User],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
