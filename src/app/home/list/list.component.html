@@ -2,25 +2,38 @@
   <div class="row">
     <div class="panel">
       <a (click)="addNewList()" class="btn btn-success">
-        <!--<div class="glyphicon glyphicon-plus"></div>-->
         New list
       </a>
     </div>
   </div>
-
   <div class="row">
-    <!--<ul class="list-group list-inline">-->
     <ul class="list-group">
-      <li *ngFor="let list of user.lists" class="list-group-item" id="{{ list.id }}">
-
+      <li *ngFor="let list of user.lists" class="list-group-item col-xs-12 col-md-3 col-lg-4" id="{{ list.id }}">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 *ngIf="!list.isNewTitle" (click)="showUpdateTitleInput(list.id)" class="panel-title hyphenate">{{ list.title }}</h3>
+            <h3 *ngIf="!list.isNewTitle" (click)="showUpdateTitleInput(list.id)" class="panel-title hyphenate">
+              {{ list.title }}
+              <a href="#" (click)="removeList(list)">
+                <span class="glyphicon glyphicon-trash"></span>
+              </a>
+            </h3>
             <input type="text" *ngIf="list.isNewTitle" [(ngModel)]="list.title" [focus]="focusTrigger" (blur)="updateTitle(list.id)" (keyup.enter)="updateTitle(list.id)" class="form-control">
           </div>
           <div class="panel-body">
             <ul class="list-group">
-              <li *ngFor="let item of list.items" class="list-group-item hyphenate"> {{ item.text }} </li>
+              <li *ngFor="let item of list.items" class="list-group-item">
+
+                <div class="row">
+                  <a href="#" (click)="list.toggleCompleteItem(item)">
+                    <div class="col-xs-2 glyphicon glyphicon-check"></div>
+                  </a>
+                  <div class="list-group-item-text col-xs-8 hyphenate"> {{ item.text }} </div>
+                  <a href="#" (click)="list.removeItem(item)">
+                    <div class="col-xs-2 glyphicon glyphicon-remove"></div>
+                  </a>
+                </div>
+
+              </li>
             </ul>
           </div>
           <div class="panel-footer">
@@ -28,14 +41,10 @@
               <div class="glyphicon glyphicon-plus"></div>
               Add new item
             </a>
-            <!--<textarea *ngIf="isNewListItem" [(ngModel)]="newListItem" [focus]="focusTrigger" (blur)="addNewListItem()" (keyup.enter)="addNewListItem()" class="form-control no-resize"></textarea>-->
-            <!--<textarea *ngIf="isNewListItem" [(ngModel)]="newListItem" [focus]="focusTrigger" (blur)="list.addItem()" (keyup.enter)="list.addItem()" class="form-control no-resize"></textarea>-->
             <textarea *ngIf="list.isNewListItem" [(ngModel)]="newListItem" [focus]="focusTrigger" (blur)="addNewListItem(list.id)" (keyup.enter)="addNewListItem(list.id)" class="form-control no-resize"></textarea>
           </div>
         </div>
-
       </li>
     </ul>
   </div>
-
 </div>

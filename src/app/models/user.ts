@@ -20,7 +20,8 @@ export class User implements UserInterface {
     }
 
     removeList = function (list: List) {
-        // TODO: add list remove function
+        let listIndex : number = this.lists.indexOf(list, 0);
+        this.lists.splice(listIndex, 1);
     }
 
     getNewListId = function () {

@@ -1,5 +1,6 @@
 import { Component, EventEmitter } from '@angular/core';
 import { User } from './../../models/index';
+import {List} from "../../models/list";
 
 @Component({
   selector: 'user-lists',
@@ -18,6 +19,10 @@ export class ListComponent {
     let id = this.user.getNewListId();
     this.user.addList(id);
   }
+  
+  removeList(list: List) {
+    this.user.removeList(list);
+  }
 
   showUpdateTitleInput(listId: number) {
     for (let list of this.user.lists) {
@@ -26,7 +31,7 @@ export class ListComponent {
         list.isNewTitle = !list.isNewTitle;
         setTimeout(function () {
           this.setFocus();
-        }.bind(this), 200);
+        }.bind(this), 0);
       }
     }
   }
@@ -34,7 +39,7 @@ export class ListComponent {
   updateTitle(listId: number) {
     for (let list of this.user.lists) {
       if (list.id == listId && !list.title.trim()) {
-        list.title = this.currentListTitle;
+        list.updateTitle(this.currentListTitle);
         list.isNewTitle = false;
       } else {
         list.isNewTitle = false;
@@ -57,8 +62,10 @@ export class ListComponent {
   addNewListItem(listId: number) {
     for (let list of this.user.lists) {
       if (list.id == listId && this.newListItem.trim() != '') {
-        list.items.push({text: this.newListItem, completed: false})
-        list.isNewListItem = false;
+        if (list.isNewListItem) {
+          list.items.push({text: this.newListItem, completed: false})
+          list.isNewListItem = false;
+        }
       } else {
         list.isNewListItem = false;
       }
