@@ -27,12 +27,15 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
+  public user = null;
+
   login() {
     this.loading = true;
     this.authenticationService.login(this.model.username, this.model.password)
     .then((user: User) => {
         if(user){
           this.alertService.success('Добро пожаловать ' + user.name);
+          this.authenticationService.user = user;
           this.router.navigate([this.returnUrl]);
         }else{
           this.alertService.error('Ошиблись логином или паролем');

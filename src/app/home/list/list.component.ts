@@ -29,9 +29,9 @@ export class ListComponent {
       if (list.id == listId) {
         this.currentListTitle = list.title;
         list.isNewTitle = !list.isNewTitle;
-        setTimeout(function () {
+        setTimeout(()=> {
           this.setFocus();
-        }.bind(this), 0);
+        }, 0);
       }
     }
   }
@@ -52,9 +52,9 @@ export class ListComponent {
     for (let list of this.user.lists) {
       if (list.id == listId) {
         list.isNewListItem = true;
-        setTimeout(function () {
+        setTimeout(() => {
           this.setFocus();
-        }.bind(this), 0);
+        }, 0);
       }
     }
   }

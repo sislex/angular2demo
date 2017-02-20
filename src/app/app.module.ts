@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AlertModule } from 'ng2-bootstrap';
+// import { AlertModule } from 'ng2-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -14,13 +14,11 @@ import { ListComponent } from './home/list/list.component';
 import { FocusElementDirective } from './focus-element.directive';
 import { User } from './models/index';
 
-
-// import { VideoComponent } from './video/video.component';
-
 import { AlertService, AuthenticationService } from './services/index';
 import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
+  //declarations: классы представлений (view classes), которые принадлежат модулю. Angular имеет три типа классов представлений: компоненты (components), директивы (directives), каналы (pipes)
   declarations: [
     AppComponent,
     LoginComponent,
@@ -30,17 +28,22 @@ import { AlertComponent } from './alert/alert.component';
     FocusElementDirective,
     AlertComponent,
     FocusElementDirective,
-    // VideoComponent,
     AlertComponent
   ],
+  //imports: другие модули, классы которых необходимы для шаблонов компонентов из текущего модуля
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AlertModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [AuthenticationService, AlertService, User],
+  //roviders: классы, создающие сервисы, используемые модулем
+  providers: [
+    AuthenticationService,
+    AlertService,
+    User
+  ],
+  //bootstrap: корневой компонент, который вызывается по умолчанию при загрузке приложения
   bootstrap: [AppComponent]
 })
 export class AppModule { }

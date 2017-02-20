@@ -25,7 +25,7 @@
 
                 <div class="row">
                   <a href="#" (click)="list.toggleCompleteItem(item)">
-                    <div class="col-xs-2 glyphicon glyphicon-check"></div>
+                    <div class="col-xs-2 glyphicon" [ngClass]="{'glyphicon-check':item.completed == true, 'glyphicon-unchecked':item.completed == false}"></div>
                   </a>
                   <div class="list-group-item-text col-xs-8 hyphenate"> {{ item.text }} </div>
                   <a href="#" (click)="list.removeItem(item)">
