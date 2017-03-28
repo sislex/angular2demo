@@ -1,0 +1,27 @@
+<p *ngIf="condition"></p>
+<li *ngFor="let item of items">{{item}}</li>
+<div [ngSwitch]="count">
+             <template [ngSwitchCase]="1">{{count * 10}}</template>
+             <template [ngSwitchCase]="2">{{count * 100}}</template>
+             <template ngSwitchDefault>{{count * 1000}}</template>
+</div>
+
+
+
+
+
+
+<p [ngClass]="{verdanaFont:false, segoePrintFont:true}"></p>
+<p [class.verdanaFont]="false" [class.segoePrintFont]="true"></p>
+
+<span [ngStyle]="{'font-size':'13px', 'font-family':'Verdana'}"></span>
+<span [style.fontSize]="'13px'" [style.fontFamily]="'Verdana'"></span>
+
+
+
+
+
+<button (click)="increase($event)">Click</button>
+
+<input type="text" [value]="name" />
+<input type="text" [(value)]="name" />
